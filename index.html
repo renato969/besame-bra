@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Primeira Fila · BésameBRA</title>
+<meta name="description" content="Entre na Primeira Fila do BésameBRA. Brazilian Latin Festival. São Paulo, 2027.">
+<meta property="og:title" content="Primeira Fila · BésameBRA">
+<meta property="og:description" content="A América Latina é uma só. São Paulo, 2027. Quem entra agora compra antes.">
+<meta property="og:type" content="website">
+<style>
+  /* ============ TOKENS ============
+     Paleta derivada do brand book: preto de pincel, vermelho beijo,
+     faixa amarela, verde de acento. Fundo branco puro para que o
+     vermelho seja o unico evento visual da pagina.
+     Fontes: stack de sistema por decisao de privacidade (nenhuma
+     chamada a terceiros). Para usar a fonte oficial, hospede o
+     .woff2 no proprio dominio e troque --font-display.
+  */
+  :root{
+    --red:#E4002B;
+    --black:#000000;
+    --ink:#1C1C1C;
+    --mute:#6B6B6B;
+    --line:#D8D8D8;
+    --yellow:#FFC700;
+    --green:#00A859;
+    --paper:#FFFFFF;
+    --font-display:"Archivo Black","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --font-text:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-text);
+    font-size:17px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:22px 22px 64px}
+
+  /* ============ ABERTURA ============ */
+  .hero{
+    min-height:100vh;min-height:100dvh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:76px 22px 26px;gap:clamp(12px,2.6vh,24px);
+    max-width:620px;margin:0 auto;position:relative;
+  }
+  .logo{position:relative;width:min(80vw,400px);aspect-ratio:900/413}
+  .logo img{position:absolute;left:0;width:100%;display:block}
+  .logo .lips{top:0;height:36.08%}
+  .logo .word{top:36.08%;height:40.92%}
+  .logo .band{top:77.0%;height:23.0%}
+  .place{font-family:var(--font-display);font-style:italic;font-size:clamp(15px,4.2vw,19px);letter-spacing:.01em;color:var(--red);margin:0}
+  .hero .sub{margin:0;font-size:15.5px;color:var(--mute);max-width:26em}
+  .cta{
+    appearance:none;border:0;border-radius:2px;background:var(--black);color:#fff;
+    font:900 16px/1 var(--font-text);padding:17px 30px;cursor:pointer;margin-top:4px;
+  }
+  .cue{width:14px;height:14px;border-right:2px solid var(--line);border-bottom:2px solid var(--line);transform:rotate(45deg);margin-top:4px}
+  .topbar{position:absolute;top:18px;right:20px;z-index:2}
+  .mark{display:none}
+  .lang{display:flex;gap:2px;border:1px solid var(--line);border-radius:2px;overflow:hidden;background:#fff}
+  .lang button{
+    appearance:none;border:0;background:transparent;color:var(--mute);
+    font:600 12px/1 var(--font-text);letter-spacing:.06em;padding:8px 10px;cursor:pointer;
+  }
+  .lang button[aria-pressed="true"]{background:var(--black);color:#fff}
+
+  /* ============ HERO ============ */
+  h1{
+    font-family:var(--font-display);
+    font-weight:900;font-style:italic;
+    font-size:clamp(28px,8.6vw,44px);
+    line-height:1.04;letter-spacing:-.025em;
+    margin:0;color:var(--black);
+    text-transform:uppercase;
+  }
+  h1 .band{line-height:1.12}
+
+  /* ---- animacao de abertura, uma unica vez ---- */
+  @keyframes stamp{from{opacity:0;transform:scale(1.55) rotate(-7deg)}to{opacity:1;transform:none}}
+  @keyframes wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes nudge{0%,100%{transform:rotate(45deg) translate(0,0);opacity:.5}50%{transform:rotate(45deg) translate(4px,4px);opacity:1}}
+  .go .logo .lips{animation:stamp .52s cubic-bezier(.16,.84,.3,1.04) .08s both}
+  .go .logo .word{animation:wipe .58s cubic-bezier(.3,.7,.2,1) .42s both}
+  .go .logo .band{animation:wipe .34s cubic-bezier(.3,.7,.2,1) .92s both}
+  .go .hero h1{animation:rise .5s ease-out 1.02s both}
+  .go .hero .place{animation:rise .5s ease-out 1.14s both}
+  .go .hero .sub{animation:rise .5s ease-out 1.24s both}
+  .go .hero .cta{animation:rise .5s ease-out 1.34s both}
+  .go .hero .cue{animation:rise .4s ease-out 1.7s both, nudge 1.6s ease-in-out 2.1s 3}
+  .go .topbar{animation:rise .4s ease-out 1.5s both}
+  .band{
+    display:inline-block;background:var(--yellow);
+    padding:1px 8px 3px;transform:rotate(-1.2deg);
+  }
+  .lede{font-size:18px;line-height:1.45;color:var(--ink);margin:0 0 10px;max-width:34em}
+  .sub{font-size:15px;color:var(--mute);margin:0 0 30px}
+  .promise{
+    border-left:4px solid var(--red);padding:2px 0 2px 14px;margin:0 0 34px;
+    font-size:15.5px;line-height:1.45;
+  }
+  .promise strong{font-weight:700}
+
+  /* ============ FORM ============ */
+  .field{margin:0 0 24px}
+  .field label{display:block;font-size:13.5px;font-weight:700;letter-spacing:.01em;color:var(--black);margin-bottom:7px}
+  .field .opt{font-weight:400;color:var(--mute)}
+  .field input, .field textarea{
+    width:100%;border:0;border-bottom:2px solid var(--line);
+    background:transparent;border-radius:0;
+    font:400 19px/1.35 var(--font-text);color:var(--ink);
+    padding:6px 0 9px;
+  }
+  .field textarea{resize:none;min-height:54px}
+  .field input:focus, .field textarea:focus{
+    outline:none;border-bottom-color:var(--black);
+    box-shadow:0 2px 0 0 var(--yellow);
+  }
+  .field input::placeholder,.field textarea::placeholder{color:#B4B4B4}
+  .hint{font-size:13px;color:var(--mute);margin-top:6px}
+  .err{font-size:13.5px;color:var(--red);font-weight:600;margin-top:6px;display:none}
+  .field.bad input,.field.bad textarea{border-bottom-color:var(--red)}
+  .field.bad .err{display:block}
+
+  .consent{display:flex;gap:11px;align-items:flex-start;margin:30px 0 8px}
+  .consent input{margin:2px 0 0;width:21px;height:21px;accent-color:var(--red);flex:0 0 auto}
+  .consent label{font-size:14.5px;line-height:1.42;color:var(--ink)}
+  .consent.bad label{color:var(--red)}
+
+  .send{
+    width:100%;appearance:none;border:0;border-radius:2px;
+    background:var(--red);color:#fff;
+    font:900 17px/1 var(--font-text);letter-spacing:.02em;
+    padding:19px 16px;margin-top:22px;cursor:pointer;
+  }
+  .send:active{transform:translateY(1px)}
+  .send[disabled]{opacity:.55;cursor:progress}
+  .fine{font-size:12.5px;color:var(--mute);margin-top:14px;line-height:1.45}
+  .fine a{color:var(--mute)}
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+
+  /* ============ SUCESSO ============ */
+  .done{display:none}
+  .done h2{font-family:var(--font-display);font-style:italic;text-transform:uppercase;font-size:clamp(28px,8vw,40px);line-height:1;letter-spacing:-.02em;margin:0 0 14px;color:var(--black)}
+  .done p{font-size:16.5px;margin:0 0 16px}
+  .next{display:block;border:2px solid var(--black);border-radius:2px;padding:15px 16px;margin:0 0 10px;text-decoration:none;color:var(--black);font-weight:700;font-size:15.5px}
+  .next small{display:block;font-weight:400;color:var(--mute);font-size:13px;margin-top:3px}
+  .next.sp{border-color:var(--green)}
+  .next.wa{border-color:var(--green)}
+  .code{font:600 14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--mute);margin-top:22px}
+
+  /* ============ RODAPE / MODAL ============ */
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mute);line-height:1.5}
+  footer a{color:var(--mute)}
+  dialog{border:0;border-radius:3px;padding:0;max-width:600px;width:calc(100% - 32px);color:var(--ink)}
+  dialog::backdrop{background:rgba(0,0,0,.55)}
+  .doc{padding:26px 22px 22px;max-height:78vh;overflow:auto}
+  .doc h3{font-family:var(--font-display);font-style:italic;text-transform:uppercase;font-size:22px;margin:0 0 4px}
+  .doc h4{font-size:14px;margin:20px 0 5px}
+  .doc p{font-size:14px;line-height:1.5;margin:0 0 9px;color:#333}
+  .doc .close{width:100%;margin-top:16px;padding:14px;border:0;border-radius:2px;background:var(--black);color:#fff;font:700 15px var(--font-text);cursor:pointer}
+  @media (max-height:700px){
+    .logo{width:min(62vw,300px)}
+    .hero{gap:clamp(10px,2vh,18px);padding-top:62px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important;animation:none!important}
+    .logo img,.hero h1,.hero .place,.hero .sub,.hero .cta,.hero .cue,.topbar{opacity:1!important;clip-path:none!important;transform:none!important}
+  }
+</style>
+</head>
+<body>
+<section class="hero" id="hero">
+  <div class="topbar">
+    <div class="lang" role="group" aria-label="Idioma">
+      <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+      <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    </div>
+  </div>
+
+  <div class="logo" id="logo" role="img" aria-label="BésameBRA">
+    <img class="lips" src="l-lips.png" alt="" width="900" height="149" fetchpriority="high" decoding="sync">
+    <img class="word" src="l-word.png" alt="" width="900" height="169" fetchpriority="high" decoding="sync">
+    <img class="band" src="l-band.png" alt="" width="900" height="95" fetchpriority="high" decoding="sync">
+  </div>
+
+  <h1 id="t-h1"></h1>
+  <p class="place" id="t-place"></p>
+  <p class="sub" id="t-sub"></p>
+  <button type="button" class="cta" id="l-cta"></button>
+  <div class="cue" aria-hidden="true"></div>
+</section>
+
+<div class="wrap">
+  <main id="form-view">
+    <p class="lede" id="t-lede"></p>
+    <div class="promise" id="t-promise"></div>
+
+    <form id="f" novalidate>
+      <div class="field" id="fx-email">
+        <label for="email" id="l-email"></label>
+        <input type="email" id="email" name="email" inputmode="email" autocomplete="email" placeholder="voce@email.com" required>
+        <div class="err" id="e-email"></div>
+      </div>
+
+      <div class="field" id="fx-wa">
+        <label for="wa" id="l-wa"></label>
+        <input type="tel" id="wa" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="+55 11 90000 0000">
+        <div class="hint" id="h-wa"></div>
+        <div class="err" id="e-wa"></div>
+      </div>
+
+      <div class="field" id="fx-city">
+        <label for="city" id="l-city"></label>
+        <input type="text" id="city" name="cidade" autocomplete="address-level2" placeholder="São Paulo, BR">
+        <div class="err" id="e-city"></div>
+      </div>
+
+      <div class="field" id="fx-art">
+        <label for="art" id="l-art"></label>
+        <textarea id="art" name="artistas" rows="2" maxlength="180" placeholder=""></textarea>
+        <div class="hint" id="h-art"></div>
+      </div>
+
+      <input type="text" id="website" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div class="consent" id="fx-ok">
+        <input type="checkbox" id="ok" name="consent">
+        <label for="ok" id="l-ok"></label>
+      </div>
+
+      <button type="submit" class="send" id="l-send"></button>
+      <p class="fine" id="t-fine"></p>
+    </form>
+  </main>
+
+  <section class="done" id="done-view" aria-live="polite">
+    <h2 id="d-h2"></h2>
+    <p id="d-body"></p>
+    <a class="next sp" id="d-sp" href="#" target="_blank" rel="noopener"></a>
+    <a class="next wa" id="d-wa" href="#" target="_blank" rel="noopener"></a>
+    <a class="next" id="d-share" href="#"></a>
+    <p class="code" id="d-code"></p>
+  </section>
+
+  <footer>
+    <p id="t-foot"></p>
+    <p><a href="#" id="open-doc"></a></p>
+  </footer>
+</div>
+
+<dialog id="doc">
+  <div class="doc" id="doc-body"></div>
+</dialog>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ================= CONFIG ================= */
+  var CONFIG = {
+    endpoint: '/api/enviar',
+    formType: 'primeira-fila',
+    formVersion: '1.0.0',
+    noticeVersion: 'aviso-2026-09',
+    realizacao: 'House.XP e StarMusic',
+    controller: 'Digitalland Empreendimentos Ltda.',
+    email: 'privacidade@besamebra.com',
+    spotify: 'https://open.spotify.com/playlist/COLOQUE_O_ID',
+    whatsapp: 'https://whatsapp.com/channel/COLOQUE_O_CANAL'
+  };
+
+  /* ================= TEXTOS ================= */
+  var T = {
+    pt:{
+      h1:['A AMÉRICA LATINA','É UMA SÓ.','São Paulo, 2027.'],
+      lede:'BésameBRA é o festival que trata Brasil e América Latina como uma coisa só. Mesmo palco, mesma mesa, mesma rua.',
+      sub:'O lineup ainda não foi anunciado. A fila, sim.',
+      promise:'A <strong>Primeira Fila</strong> compra antes de todo mundo, pelo preço do primeiro lote, e ajuda a escolher quem sobe no palco.',
+      email:'Seu e-mail',
+      wa:'WhatsApp <span class="opt">(opcional)</span>',
+      waHint:'É por aqui que avisamos a abertura da venda. Com DDD e código do país.',
+      city:'Onde você mora',
+      art:'Três artistas que você viajaria para ver <span class="opt">(opcional)</span>',
+      artHint:'Isso entra de verdade na conversa com os empresários.',
+      artPh:'Ex.: Bad Bunny, Anitta, Rauw Alejandro',
+      ok:'Quero receber novidades do BésameBRA por e-mail e WhatsApp. Posso sair quando quiser.',
+      realiz:'Realização '+CONFIG.realizacao+'.',
+      cta:'Quero entrar na fila',
+      send:'Entrar na Primeira Fila',
+      fine:'Sem spam. Você recebe o mapa da música latina, a playlist do mês e o aviso da venda. Nada além disso.',
+      errEmail:'Confira o e-mail.',
+      errWa:'Confira o número.',
+      errCity:'Diga a cidade e o país.',
+      errOk:'Marque a caixa para continuar.',
+      sending:'Enviando...',
+      doneH:'VOCÊ ESTÁ NA FILA.',
+      doneB:'Confirme no e-mail que acabamos de enviar. Sem essa confirmação a prioridade não vale.',
+      sp:'Seguir a playlist oficial',
+      spSub:'Atualizada todo mês. É de onde sai o lineup.',
+      waCh:'Entrar no canal do WhatsApp',
+      waSub:'O aviso da venda sai aqui primeiro.',
+      share:'Chamar quem vai com você',
+      shared:'Link copiado.',
+      shareTxt:'A América Latina é uma só. Entrei na Primeira Fila do BésameBRA. São Paulo, 2027.',
+      code:'Seu código: ',
+      errT:'Não conseguimos enviar.',
+      errB:'Confira a conexão e tente de novo. Seus dados continuam aqui.',
+      retry:'Tentar de novo',
+      foot:'Realização '+CONFIG.realizacao+'. Dados sob responsabilidade de '+CONFIG.controller+'. Dúvidas ou exclusão dos seus dados: '+CONFIG.email+'.',
+      docLink:'Aviso de privacidade e cookies',
+      close:'Fechar'
+    },
+    es:{
+      h1:['AMÉRICA LATINA','ES UNA SOLA.','São Paulo, 2027.'],
+      lede:'BésameBRA es el festival que trata a Brasil y a América Latina como una sola cosa. Mismo escenario, misma mesa, misma calle.',
+      sub:'El lineup todavía no se anunció. La fila, sí.',
+      promise:'La <strong>Primera Fila</strong> compra antes que todos, al precio del primer lote, y ayuda a elegir quién sube al escenario.',
+      email:'Tu e-mail',
+      wa:'WhatsApp <span class="opt">(opcional)</span>',
+      waHint:'Por acá avisamos la apertura de venta. Incluí el código de país.',
+      city:'Dónde vivís',
+      art:'Tres artistas por los que viajarías <span class="opt">(opcional)</span>',
+      artHint:'Esto entra de verdad en la conversación con los mánagers.',
+      artPh:'Ej.: Bad Bunny, Anitta, Rauw Alejandro',
+      ok:'Quiero recibir novedades de BésameBRA por e-mail y WhatsApp. Puedo salir cuando quiera.',
+      realiz:'Realización '+CONFIG.realizacao+'.',
+      cta:'Quiero entrar en la fila',
+      send:'Entrar en la Primera Fila',
+      fine:'Sin spam. Recibís el mapa de la música latina, la playlist del mes y el aviso de venta. Nada más.',
+      errEmail:'Revisá el e-mail.',
+      errWa:'Revisá el número.',
+      errCity:'Decinos la ciudad y el país.',
+      errOk:'Marcá la casilla para continuar.',
+      sending:'Enviando...',
+      doneH:'ESTÁS EN LA FILA.',
+      doneB:'Confirmá en el e-mail que acabamos de enviarte. Sin esa confirmación la prioridad no vale.',
+      sp:'Seguir la playlist oficial',
+      spSub:'Se actualiza cada mes. De ahí sale el lineup.',
+      waCh:'Entrar al canal de WhatsApp',
+      waSub:'El aviso de venta sale acá primero.',
+      share:'Avisale a quien va con vos',
+      shared:'Enlace copiado.',
+      shareTxt:'América Latina es una sola. Entré en la Primera Fila de BésameBRA. São Paulo, 2027.',
+      code:'Tu código: ',
+      errT:'No pudimos enviar.',
+      errB:'Revisá la conexión e intentá de nuevo. Tus datos siguen acá.',
+      retry:'Intentar de nuevo',
+      foot:'Realización '+CONFIG.realizacao+'. Datos bajo responsabilidad de '+CONFIG.controller+'. Dudas o eliminación de tus datos: '+CONFIG.email+'.',
+      docLink:'Aviso de privacidad y cookies',
+      close:'Cerrar'
+    }
+  };
+
+  var NOTICE = {
+    pt:[
+      ['Quem é responsável','O BésameBRA é uma realização de '+CONFIG.realizacao+'. Os dados desta lista ficam sob responsabilidade exclusiva de '+CONFIG.controller+', que é a controladora. Contato para qualquer assunto de privacidade: '+CONFIG.email+'.'],
+      ['Cookies','Esta página não usa cookies, pixels de rastreamento nem ferramentas de analytics. Fontes e código ficam no próprio site. Se um dia ativarmos rastreamento, pediremos seu consentimento antes.'],
+      ['O que coletamos','E-mail, WhatsApp se você informar, cidade e país, artistas que você citar. Registramos também o idioma escolhido, o canal pelo qual você chegou ao link e a versão deste aviso. Não pedimos nome e não gravamos seu endereço IP.'],
+      ['Para que usamos','Avisar sobre a abertura de vendas e enviar conteúdo sobre música latina. Os dados agregados e anonimizados alimentam estudos de público apresentados a parceiros. Nenhum dado individual é vendido ou cedido.'],
+      ['Por quanto tempo','Até você pedir a exclusão ou até 24 meses após o último contato seu com a gente.'],
+      ['Seus direitos','Acesso, correção, exclusão e revogação do consentimento a qualquer momento, pelo e-mail acima ou pelo link de cancelamento em qualquer mensagem. Base legal: consentimento, art. 7º, I da LGPD.'],
+      ['Idade','Esta lista é para pessoas com 18 anos ou mais.']
+    ],
+    es:[
+      ['Quién es responsable','BésameBRA es una realización de '+CONFIG.realizacao+'. Los datos de esta lista están bajo responsabilidad exclusiva de '+CONFIG.controller+', que es la responsable del tratamiento. Contacto para privacidad: '+CONFIG.email+'.'],
+      ['Cookies','Esta página no usa cookies, píxeles de rastreo ni analytics. Fuentes y código están en el propio sitio. Si algún día activamos rastreo, pediremos tu consentimiento antes.'],
+      ['Qué recopilamos','E-mail, WhatsApp si lo dejás, ciudad y país, artistas que menciones. También el idioma elegido, el canal por el que llegaste y la versión de este aviso. No pedimos nombre y no guardamos tu IP.'],
+      ['Para qué lo usamos','Avisarte de la apertura de venta y enviarte contenido sobre música latina. Los datos agregados y anonimizados alimentan estudios de público presentados a socios. Ningún dato individual se vende ni se cede.'],
+      ['Por cuánto tiempo','Hasta que pidas la eliminación o hasta 24 meses después de tu último contacto.'],
+      ['Tus derechos','Acceso, corrección, eliminación y revocación del consentimiento cuando quieras, por el e-mail de arriba o por el enlace de baja en cualquier mensaje.'],
+      ['Edad','Esta lista es para personas de 18 años o más.']
+    ]
+  };
+
+  /* ================= ESTADO ================= */
+  var lang = (navigator.language||'pt').toLowerCase().indexOf('es')===0 ? 'es' : 'pt';
+  var started = Date.now();
+  var $ = function(id){ return document.getElementById(id); };
+
+  function channel(){
+    try{
+      var p = new URLSearchParams(location.search);
+      return p.get('utm_source') || p.get('fbclid') && 'meta' || (document.referrer ? new URL(document.referrer).hostname : 'direto');
+    }catch(e){ return 'direto'; }
+  }
+
+  function paint(){
+    var t = T[lang];
+    document.documentElement.lang = lang==='es' ? 'es' : 'pt-BR';
+    $('t-h1').innerHTML = t.h1[0]+'<br><span class="band">'+t.h1[1]+'</span>';
+    $('t-place').textContent = t.h1[2];
+    $('l-cta').textContent = t.cta;
+    $('t-lede').textContent = t.lede;
+    $('t-sub').textContent = t.sub;
+    $('t-promise').innerHTML = t.promise;
+    $('l-email').textContent = t.email;
+    $('l-wa').innerHTML = t.wa;
+    $('h-wa').textContent = t.waHint;
+    $('l-city').textContent = t.city;
+    $('l-art').innerHTML = t.art;
+    $('h-art').textContent = t.artHint;
+    $('art').placeholder = t.artPh;
+    $('l-ok').textContent = t.ok;
+    $('l-send').textContent = t.send;
+    $('t-fine').textContent = t.fine;
+    $('e-email').textContent = t.errEmail;
+    $('e-wa').textContent = t.errWa;
+    $('e-city').textContent = t.errCity;
+    $('t-foot').textContent = t.foot;
+    $('open-doc').textContent = t.docLink;
+    $('d-h2').textContent = t.doneH;
+    $('d-body').textContent = t.doneB;
+    $('d-sp').innerHTML = t.sp+'<small>'+t.spSub+'</small>';
+    $('d-wa').innerHTML = t.waCh+'<small>'+t.waSub+'</small>';
+    $('d-share').textContent = t.share;
+    var docs = NOTICE[lang].map(function(s){ return '<h4>'+s[0]+'</h4><p>'+s[1]+'</p>'; }).join('');
+    $('doc-body').innerHTML = '<h3>'+t.docLink+'</h3><p>'+CONFIG.noticeVersion+'</p>'+docs+
+      '<button type="button" class="close" id="doc-close">'+t.close+'</button>';
+    $('doc-close').onclick = function(){ $('doc').close(); };
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function(b){
+    b.addEventListener('click', function(){
+      lang = b.dataset.lang;
+      Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function(x){
+        x.setAttribute('aria-pressed', String(x.dataset.lang===lang));
+      });
+      paint();
+    });
+  });
+
+  $('open-doc').addEventListener('click', function(e){ e.preventDefault(); $('doc').showModal(); });
+
+  /* ================= VALIDACAO ================= */
+  var reMail = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+  function digits(s){ return (s||'').replace(/\D/g,''); }
+
+  function validate(){
+    var ok = true;
+    ['fx-email','fx-wa','fx-city','fx-ok'].forEach(function(id){ $(id).classList.remove('bad'); });
+
+    if(!reMail.test($('email').value.trim())){ $('fx-email').classList.add('bad'); ok = false; }
+    var wa = $('wa').value.trim();
+    if(wa && (digits(wa).length < 10 || digits(wa).length > 15)){ $('fx-wa').classList.add('bad'); ok = false; }
+    if($('city').value.trim().length < 2){ $('fx-city').classList.add('bad'); ok = false; }
+    if(!$('ok').checked){ $('fx-ok').classList.add('bad'); ok = false; }
+    return ok;
+  }
+
+  /* ================= ENVIO ================= */
+  $('f').addEventListener('submit', function(e){
+    e.preventDefault();
+    if($('website').value){ return; }            // honeypot
+    if(Date.now() - started < 2500){ return; }   // tempo minimo humano
+    if(!validate()){
+      var bad = document.querySelector('.bad input, .bad textarea');
+      if(bad){ bad.focus(); }
+      return;
+    }
+
+    var btn = $('l-send');
+    btn.disabled = true;
+    btn.textContent = T[lang].sending;
+
+    var payload = {
+      formType: CONFIG.formType,
+      formVersion: CONFIG.formVersion,
+      noticeVersion: CONFIG.noticeVersion,
+      lang: lang,
+      email: $('email').value.trim().toLowerCase(),
+      whatsapp: $('wa').value.trim(),
+      cidade: $('city').value.trim(),
+      artistas: $('art').value.trim(),
+      consent: true,
+      consentText: T[lang].ok,
+      canal: channel(),
+      device: (window.matchMedia('(pointer:coarse)').matches ? 'mobile' : 'desktop'),
+      startedAt: new Date(started).toISOString(),
+      sentAt: new Date().toISOString()
+    };
+
+    fetch(CONFIG.endpoint, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    }).then(function(r){
+      if(!r.ok){ throw new Error('http'); }
+      return r.json().catch(function(){ return {}; });
+    }).then(function(data){
+      $('form-view').style.display = 'none';
+      $('done-view').style.display = 'block';
+      $('d-sp').href = CONFIG.spotify;
+      $('d-wa').href = CONFIG.whatsapp;
+      $('d-code').textContent = data && data.code ? (T[lang].code + data.code) : '';
+      $('done-view').scrollIntoView({ block:'start' });
+    }).catch(function(){
+      btn.disabled = false;
+      btn.textContent = T[lang].retry;
+      alert(T[lang].errT + ' ' + T[lang].errB);
+    });
+  });
+
+  $('d-share').addEventListener('click', function(e){
+    e.preventDefault();
+    var url = location.origin + location.pathname;
+    if(navigator.share){
+      navigator.share({ title:'BésameBRA', text:T[lang].shareTxt, url:url });
+    }else if(navigator.clipboard){
+      navigator.clipboard.writeText(T[lang].shareTxt+' '+url);
+      $('d-share').textContent = T[lang].shared;
+    }
+  });
+
+  $('l-cta').addEventListener('click', function(){
+    var el = $('fx-email');
+    el.scrollIntoView({ behavior: motionOK() ? 'smooth' : 'auto', block: 'center' });
+    setTimeout(function(){ $('email').focus({ preventScroll:true }); }, motionOK() ? 520 : 0);
+  });
+
+  function motionOK(){
+    return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  paint();
+
+  // so anima depois que as tres camadas do logo estao em memoria,
+  // com teto de 1,4s para nao segurar a abertura em conexao ruim
+  (function(){
+    var imgs = document.querySelectorAll('#logo img');
+    var pend = imgs.length, fired = false;
+    function start(){
+      if(fired){ return; }
+      fired = true;
+      requestAnimationFrame(function(){ document.body.classList.add('go'); });
+    }
+    Array.prototype.forEach.call(imgs, function(im){
+      if(im.complete){ if(--pend<=0){ start(); } return; }
+      im.addEventListener('load', function(){ if(--pend<=0){ start(); } });
+      im.addEventListener('error', function(){ if(--pend<=0){ start(); } });
+    });
+    if(pend<=0){ start(); }
+    setTimeout(start, 1400);
+  })();
+})();
+</script>
+</body>
+</html>
